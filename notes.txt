@@ -1,0 +1,25 @@
+Tailwind CSS
+flex-1, align-super (align properities)
+focus-visible:ring-0 focus-visible:ring-offset-0 --> for disable border 
+
+
+
+
+NeXTs
+asChild -> give value to direct first child
+
+
+
+
+
+JS 
+return decimal? `${int}.${decimal.padEnd(2,'0')}`
+padEnd = first parm, amount & second parm addvalue 
+example . 48.90
+
+
+to delete my branch
+git checkout main
+git branch -d dev-psh-bug-fix
+create new branch
+git switch -c branch name
