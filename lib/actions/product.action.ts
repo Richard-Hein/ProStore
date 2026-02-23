@@ -9,6 +9,7 @@ export async function getLatestProducts() {
         take: LATEST_PRODUCTS_LIMIT,
         orderBy: {createdAt: 'desc'}
     })
+    
     return convertToPlainObject(data);
 }
 
