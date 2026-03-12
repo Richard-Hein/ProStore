@@ -3,14 +3,14 @@ flex-1, align-super (align properities)
 focus-visible:ring-0 focus-visible:ring-offset-0 --> for disable border 
 
 
-
-
 NeXTs
 asChild -> give value to direct first child
 
-
-
-
+to delete my branch
+git checkout main
+git branch -d dev-psh-bug-fix
+create new branch
+git switch -c branch name
 
 JS 
 return decimal? `${int}.${decimal.padEnd(2,'0')}`
@@ -18,8 +18,12 @@ padEnd = first parm, amount & second parm addvalue
 example . 48.90
 
 
-to delete my branch
-git checkout main
-git branch -d dev-psh-bug-fix
-create new branch
-git switch -c branch name
+
+## useActionState
+Why use useActionState instead of useState?
+Before this hook, you had to manually create loading, error, and data states, then write a handleSubmit function with try/catch blocks. useActionState hides that "plumbing," making your component much cleaner and more predictable.
+
+Note: If you are using an older version of React (pre-19) or an older Next.js version, you might have seen this referred to as useFormState. They are effectively the same, but useActionState is the updated, standard name.
+
+## useFormStatus
+Basically, these two hooks work together as a team: useActionState tells the user what happened, and useFormStatus tells the user it's happening right now.

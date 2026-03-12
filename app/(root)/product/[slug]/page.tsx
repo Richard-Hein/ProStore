@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import ProductImages from "@/components/shared/product/product-images";
+import AddToCart from "@/components/shared/product/add-to-card";
 
 const ProductDetailsPage = async (
     props: {params : Promise<{slug: string}>;}
@@ -59,6 +60,7 @@ const ProductDetailsPage = async (
                             </div>
                             {product.stock > 0 && (
                                 <div className="flex-center">
+                                    <AddToCart item={{productId: product.id, name: product.name, slug: product.slug, price: product.price.toString(), qty: 1, image: product.images![0] }}/>
                                     <Button className='w-full'>Add to Cart</Button>
                                 </div>
                             )}
