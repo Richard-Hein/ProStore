@@ -58,7 +58,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     ...authConfig.callbacks,
     async session({ session, user, trigger, token }) {
       // Set the user ID from the token
-      session.user.id = token.sub;
+      // session.user.id = token.sub;
+      session.user.id = token.id as string;
       session.user.role = token.role;
       session.user.name = token.name;
 

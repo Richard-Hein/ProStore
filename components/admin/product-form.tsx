@@ -18,6 +18,7 @@ import { Card, CardContent } from "../ui/card";
 import { Checkbox } from "../ui/checkbox";
 import { Field, FieldError, FieldGroup, FieldLabel } from "../ui/field";
 import { toast } from "sonner";
+import Image from "next/image";
 
 const ProductForm = ({
   type,
@@ -267,7 +268,7 @@ const ProductForm = ({
                           key={`${image}-${index}`}
                           className="h-20 w-20 overflow-hidden rounded-sm border bg-muted"
                         >
-                          <img
+                          <Image
                             src={image}
                             alt={`product-${index}`}
                             className="h-full w-full object-cover"
@@ -342,7 +343,7 @@ const ProductForm = ({
 
                   {isFeatured && banner && (
                     <div className="overflow-hidden rounded-sm border bg-muted">
-                      <img
+                      <Image
                         src={banner}
                         alt="banner image"
                         className="h-auto w-full object-cover"

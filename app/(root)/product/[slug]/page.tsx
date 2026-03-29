@@ -3,7 +3,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { getProductBySlug } from "@/lib/actions/product.action";
 import { Badge } from "@/components/ui/badge";
 import { notFound } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import ProductImages from "@/components/shared/product/product-images";
 import AddToCart from "@/components/shared/product/add-to-card";
 import { getMyCart } from "@/lib/actions/cart.action";
