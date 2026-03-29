@@ -6,6 +6,10 @@ import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import ProductImages from "@/components/shared/product/product-images";
 import AddToCart from "@/components/shared/product/add-to-card";
+import { getMyCart } from "@/lib/actions/cart.action";
+import { auth } from "@/auth";
+import ReviewList from "./review-list";
+import Rating from "@/components/shared/product/rating";
 
 const ProductDetailsPage = async (
     props: {params : Promise<{slug: string}>;}
@@ -13,6 +17,10 @@ const ProductDetailsPage = async (
     const {slug} = await props.params;
     const product = await getProductBySlug(slug);
     if(!product) notFound();
+    const session = await auth();
+    const userId = session?.user?.id;
+    
+    const cart = await getMyCart();
     return ( 
         <>
          <section>
@@ -29,7 +37,8 @@ const ProductDetailsPage = async (
                         <h1 className="h3-bold">
                             {product.name}
                         </h1>
-                        <p>{product.rating.toString()} of {product.numReviews} Reviews</p>
+                        <Rating value={Number(product.rating)}/>
+                        <p>{product.numReviews} reviews</p>
                         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                             <ProductPrice value={Number(product.price)} className="w-24 rounded-full bg-green-100 text-green-700 px-5 py-2"  />
                         </div>
@@ -60,8 +69,9 @@ const ProductDetailsPage = async (
                             </div>
                             {product.stock > 0 && (
                                 <div className="flex-center">
-                                    <AddToCart item={{productId: product.id, name: product.name, slug: product.slug, price: product.price.toString(), qty: 1, image: product.images![0] }}/>
-                                    <Button className='w-full'>Add to Cart</Button>
+                                    <AddToCart 
+                                    cart={cart}
+                                    item={{productId: product.id, name: product.name, slug: product.slug, price: product.price.toString(), qty: 1, image: product.images![0] }}/>
                                 </div>
                             )}
                         </CardContent>
@@ -71,6 +81,14 @@ const ProductDetailsPage = async (
             </div>
 
          </section>
+         <section className='mt-10'>
+        <h2 className='h2-bold mb-5'>Customer Reviews</h2>
+        <ReviewList
+          userId={userId || ''}
+          productId={product.id}
+          productSlug={product.slug}
+        />
+      </section>
         </>
      );
 }

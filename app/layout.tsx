@@ -4,7 +4,7 @@ import "@/assets/styles/globals.css";
 import { APP_DESCRIPTION, APP_NAME, SERVER_URL } from "@/lib/constants";
 import {ThemeProvider} from "next-themes";
 import { cn } from "@/lib/utils";
-
+import { Toaster } from "sonner";
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const inter = Inter({subsets: ['latin']});
@@ -31,6 +31,7 @@ export default function RootLayout({
       >
         <ThemeProvider attribute={"class"} defaultTheme="light" enableSystem disableTransitionOnChange>
         {children}
+        <Toaster/>
 
         </ThemeProvider>
       </body>

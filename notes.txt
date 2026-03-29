@@ -27,3 +27,23 @@ Note: If you are using an older version of React (pre-19) or an older Next.js ve
 
 ## useFormStatus
 Basically, these two hooks work together as a team: useActionState tells the user what happened, and useFormStatus tells the user it's happening right now.
+
+data update and use Revalidate Path 
+revalidatePath()
+
+################### TS Notes ############################
+1. (cart.items as CartItem[])
+
+This is a TypeScript type assertion.
+
+It tells TypeScript:
+
+“Treat cart.items as an array of CartItem objects.”
+
+
+
+// Create a transition to create order and order items in db
+        await prisma.$transaction(async(tx) => {
+            // Create order
+            await tx.order.create({data: order})
+        })

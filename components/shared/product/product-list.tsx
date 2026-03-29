@@ -8,7 +8,7 @@ const ProductList = ({data, title, limit}: {data : Product[]; title?: string; li
             <h2 className="h2-bold mb-4">{title}</h2>
 
             {data.length >0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:gird-cols-3 lg:grid-cols-4">
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:gird-cols-3 lg:grid-cols-4">
                     {limitedData.map((product : Product) => (
                         <ProductCard key={product.slug} product={product} />
                     )) }
