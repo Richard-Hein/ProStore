@@ -12,6 +12,7 @@ import { revalidatePath } from 'next/cache';
 import { PAGE_SIZE } from '../constants';
 import { Prisma } from '@/generated/prisma/client';
 import { isRedirectError } from 'next/dist/client/components/redirect-error';
+import { sendPurchaseReceipt } from '@/email';
 // import { sendPurchaseReceipt } from '@/email';
 
 // Create order and create the order items
@@ -250,23 +251,23 @@ export async function updateOrderToPaid({
   });
 
   // Get updated order after transaction
-  // const updatedOrder = await prisma.order.findFirst({
-  //   where: { id: orderId },
-  //   include: {
-  //     orderitems: true,
-  //     user: { select: { name: true, email: true } },
-  //   },
-  // });
+  const updatedOrder = await prisma.order.findFirst({
+    where: { id: orderId },
+    include: {
+      orderitems: true,
+      user: { select: { name: true, email: true } },
+    },
+  });
 
-  // if (!updatedOrder) throw new Error('Order not found');
+  if (!updatedOrder) throw new Error('Order not found');
 
-  // sendPurchaseReceipt({
-  //   order: {
-  //     ...updatedOrder,
-  //     shippingAddress: updatedOrder.shippingAddress as ShippingAddress,
-  //     paymentResult: updatedOrder.paymentResult as PaymentResult,
-  //   },
-  // });
+  sendPurchaseReceipt({
+    order: {
+      ...updatedOrder,
+      shippingAddress: updatedOrder.shippingAddress as ShippingAddress,
+      paymentResult: updatedOrder.paymentResult as PaymentResult,
+    },
+  });
 }
 
 // Get user's orders
