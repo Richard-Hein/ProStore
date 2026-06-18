@@ -51,18 +51,18 @@ const ProductForm = ({
   });
 
   const onSubmit: SubmitHandler<z.infer<typeof insertProductSchema>> = async (
-    values
+    values,
   ) => {
     if (type === "Create") {
       const res = await createProduct(values);
 
       if (!res.success) {
         toast.error(res.message, {
-          position: "top-center"
+          position: "top-center",
         });
       } else {
         toast.success(res.message, {
-          position: "top-center"
+          position: "top-center",
         });
         router.push("/admin/products");
       }
@@ -78,11 +78,11 @@ const ProductForm = ({
 
       if (!res.success) {
         toast.error(res.message, {
-          position: "top-center"
+          position: "top-center",
         });
       } else {
         toast.success(res.message, {
-          position: "top-center"
+          position: "top-center",
         });
         router.push("/admin/products");
       }
@@ -148,7 +148,7 @@ const ProductForm = ({
                           shouldValidate: true,
                           shouldDirty: true,
                           shouldTouch: true,
-                        }
+                        },
                       );
                     }}
                   >
@@ -269,6 +269,8 @@ const ProductForm = ({
                           className="h-20 w-20 overflow-hidden rounded-sm border bg-muted"
                         >
                           <Image
+                            width={100}
+                            height={100}
                             src={image}
                             alt={`product-${index}`}
                             className="h-full w-full object-cover"
@@ -281,7 +283,7 @@ const ProductForm = ({
                     endpoint="imageUploader"
                     onClientUploadComplete={(res) => {
                       const uploadedUrls = res.map(
-                        (file) => file.ufsUrl ?? file.url
+                        (file) => file.ufsUrl ?? file.url,
                       );
 
                       form.setValue(
@@ -291,17 +293,17 @@ const ProductForm = ({
                           shouldValidate: true,
                           shouldDirty: true,
                           shouldTouch: true,
-                        }
+                        },
                       );
 
                       toast.success("Images uploaded successfully", {
-                        position: "top-center"
+                        position: "top-center",
                       });
                     }}
                     onUploadError={(error: Error) => {
                       console.error("UploadThing error:", error);
                       toast.error(error.message || "Upload failed", {
-                        position: "top-center"
+                        position: "top-center",
                       });
                     }}
                     appearance={{
@@ -344,6 +346,8 @@ const ProductForm = ({
                   {isFeatured && banner && (
                     <div className="overflow-hidden rounded-sm border bg-muted">
                       <Image
+                        width={100}
+                        height={100}
                         src={banner}
                         alt="banner image"
                         className="h-auto w-full object-cover"
@@ -362,17 +366,17 @@ const ProductForm = ({
                             shouldValidate: true,
                             shouldDirty: true,
                             shouldTouch: true,
-                          }
+                          },
                         );
 
                         toast.success("Banner uploaded successfully", {
-                          position: "top-center"
+                          position: "top-center",
                         });
                       }}
                       onUploadError={(error: Error) => {
                         console.error("UploadThing banner error:", error);
                         toast.error(error.message || "Upload failed", {
-                          position: "top-center"
+                          position: "top-center",
                         });
                       }}
                       appearance={{
